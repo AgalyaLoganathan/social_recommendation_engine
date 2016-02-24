@@ -1,0 +1,37 @@
+A constructor declaration includes the name, modifiers, parameters, and list of throwable exceptions. The java.lang.reflect.Constructor class provides a way to obtain this information. The ConstructorSift example illustrates how to search a class's declared constructors for one which has a parameter of a given type.
+
+<br>import java.lang.reflect.Constructor;
+<br>import java.lang.reflect.Type;
+<br>import static java.lang.System.out;
+<br>
+<br>public class ConstructorSift {
+<br>    public static void main(String... args) {
+<br>    try {
+<br>        Class<?> cArg = Class.forName(args[1]);
+<br>
+<br>        Class<?> c = Class.forName(args[0]);
+<br>        Constructor[] allConstructors = c.getDeclaredConstructors();
+<br>        for (Constructor ctor : allConstructors) {
+<br>        Class<?>[] pType  = ctor.getParameterTypes();
+<br>        for (int i = 0; i < pType.length; i++) {
+<br>            if (pType[i].equals(cArg)) {
+<br>            out.format("%s%n", ctor.toGenericString());
+<br>
+<br>            Type[] gpType = ctor.getGenericParameterTypes();
+<br>            for (int j = 0; j < gpType.length; j++) {
+<br>                char ch = (pType[j].equals(cArg) ? '*' : ' ');
+<br>                out.format("%7c%s[%d]: %s%n", ch,
+<br>                       "GenericParameterType", j, gpType[j]);
+<br>            }
+<br>            break;
+<br>            }
+<br>        }
+<br>        }
+<br>
+<br>        // production code should handle this exception more gracefully
+<br>    } catch (ClassNotFoundException x) {
+<br>        x.printStackTrace();
+<br>    }
+<br>    }
+<br>}
+

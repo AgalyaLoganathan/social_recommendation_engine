@@ -1,0 +1,80 @@
+There a several modifiers that may be part of a method declaration: Access modifiers: public, protected, and private Modifier restricting to one instance: static Modifier prohibiting value modification: final Modifier requiring override: abstract Modifier preventing reentrancy: synchronized Modifier indicating implementation in another programming language: native Modifier forcing strict floating point behavior: strictfp Annotations The MethodModifierSpy example lists the modifiers of a method with a given name. It also displays whether the method is synthetic (compiler-generated), of variable arity, or a bridge method (compiler-generated to support generic interfaces). 
+<br>
+<br>import java.lang.reflect.Method;
+<br>import java.lang.reflect.Modifier;
+<br>import static java.lang.System.out;
+<br>
+<br>public class MethodModifierSpy {
+<br>
+<br>    private static int count;
+<br>    private static synchronized void inc() { count++; }
+<br>    private static synchronized int cnt() { return count; }
+<br>
+<br>    public static void main(String... args) {
+<br>   try {
+<br>       Class<?> c = Class.forName(args[0]);
+<br>       Method[] allMethods = c.getDeclaredMethods();
+<br>       for (Method m : allMethods) {
+<br>      if (!m.getName().equals(args[1])) {
+<br>          continue;
+<br>      }
+<br>      out.format("%s%n", m.toGenericString());
+<br>      out.format("  Modifiers:  %s%n",
+<br>            Modifier.toString(m.getModifiers()));
+<br>      out.format("  [ synthetic=%-5b var_args=%-5b bridge=%-5b ]%n",
+<br>            m.isSynthetic(), m.isVarArgs(), m.isBridge());
+<br>      inc();
+<br>       }
+<br>       out.format("%d matching overload%s found%n", cnt(),
+<br>             (cnt() == 1 ? "" : "s"));
+<br>
+<br>        // production code should handle this exception more gracefully
+<br>   } catch (ClassNotFoundException x) {
+<br>       x.printStackTrace();
+<br>   }
+<br>    }
+<br>}
+<br> A few examples of the output MethodModifierSpy produces follow. 
+<br>$ java MethodModifierSpy java.lang.Object wait
+<br>public final void java.lang.Object.wait() throws java.lang.InterruptedException
+<br>  Modifiers:  public final
+<br>  [ synthetic=false var_args=false bridge=false ]
+<br>public final void java.lang.Object.wait(long,int)
+<br>  throws java.lang.InterruptedException
+<br>  Modifiers:  public final
+<br>  [ synthetic=false var_args=false bridge=false ]
+<br>public final native void java.lang.Object.wait(long)
+<br>  throws java.lang.InterruptedException
+<br>  Modifiers:  public final native
+<br>  [ synthetic=false var_args=false bridge=false ]
+<br>3 matching overloads found
+<br> 
+<br>$ java MethodModifierSpy java.lang.StrictMath toRadians
+<br>public static double java.lang.StrictMath.toRadians(double)
+<br>  Modifiers:  public static strictfp
+<br>  [ synthetic=false var_args=false bridge=false ]
+<br>1 matching overload found
+<br> 
+<br>$ java MethodModifierSpy MethodModifierSpy inc
+<br>private synchronized void MethodModifierSpy.inc()
+<br>  Modifiers: private synchronized
+<br>  [ synthetic=false var_args=false bridge=false ]
+<br>1 matching overload found
+<br> 
+<br>$ java MethodModifierSpy java.lang.Class getConstructor
+<br>public java.lang.reflect.Constructor<T> java.lang.Class.getConstructor
+<br>  (java.lang.Class<T>[]) throws java.lang.NoSuchMethodException,
+<br>  java.lang.SecurityException
+<br>  Modifiers: public transient
+<br>  [ synthetic=false var_args=true bridge=false ]
+<br>1 matching overload found
+<br> 
+<br>$ java MethodModifierSpy java.lang.String compareTo
+<br>public int java.lang.String.compareTo(java.lang.String)
+<br>  Modifiers: public
+<br>  [ synthetic=false var_args=false bridge=false ]
+<br>public int java.lang.String.compareTo(java.lang.Object)
+<br>  Modifiers: public volatile
+<br>  [ synthetic=true  var_args=false bridge=true  ]
+<br>2 matching overloads found
+ 

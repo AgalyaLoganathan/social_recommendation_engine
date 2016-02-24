@@ -1,0 +1,307 @@
+  <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bootstrap, from Twitter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    </style>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="#">Project name</a>
+          <div class="nav-collapse collapse">
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span9">
+          <div class="hero-unit">
+            <h1 align="center">POST 10</h1>
+            <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+          </div>
+          <div class="row-fluid">
+            <div class="span4">
+              <h2>Recommendation 1</h2>
+              <p>The requirements for an object to be a bean is to define a public parameterless constructor, so that beans can be instantiated by builder tools in an uncomplicated way (In the Point bean, the parameterless constructor is given implicitly). Secondly, one of the interfaces java.io.Serializable or java.io.Externalizable need to be implemented. The interfaces do not prescribe the implementation of any methods, but are an approval, that the bean may be saved in persistent storage as in a file or database. In doing so, the bean can be restored after an application was shut down or transferred across networks. The ability to store state of a component in persistent storage is called persistence. Java offers a standard serialization mechanism, which makes it very easy to serialize objects. Alternatively, a component can be stored in a customized manner (e.g. in xml format) by implementing the Externalizable interface.
+
+</p>
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Recommendation 2</h2>
+              <p>When an object is sent through a network, the object needs to be recreated at the receiving host.
+Object Serialization  The term Object Serialization refers to the act of converting the object to a byte stream. The byte stream can be stored on the file system, or can be sent through a network. At the later time the object can be re-created from that stream of bytes. The only requirement is that the same class has to be available at both times, when the object is serialized and also when the object is re-created. If that happens in different servers, then the same class must be available on both servers. Same class means that exactly the same version of the class must be available, otherwise the object won't be able to be re-created. This is a maintenance problem to those applications where java serialization is used to persist object or sent the object through the network. When a class is modified, there could be a problem re-creating those objects that were serialized using an earlier version of the class.
+Java has built-in support for serialization, using the Serializable interface; however, a class must first implement the Serializable interface.
+By default, a class will have all of its fields serialized when converted into a data stream (with transient fields being skipped). If additional handling is required beyond the default of writing all fields, you need to provide an implementation for methods:
+private void writeObject(java.io.ObjectOutputStream out) throws IOException;
+private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException;
+private void readObjectNoData() throws ObjectStreamException;
+If the object needs to write or provide a replacement object during serialization, it needs to implement the following two methods, with any access specifier:
+<br>Object writeReplace() throws ObjectStreamException;
+<br>Object readResolve() throws ObjectStreamException;
+<br>Normally, a minor change to the class can cause the serialization to fail. You can still allow the class to be loaded by defining the serialization version id:
+<br>Code section 4.32: Serialization version id.
+<br>1 private static final long serialVersionUID = 42L;
+
+
+              </p>
+
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Recommendation 3</h2>
+              <p>Note that all serializable classes, whether they implement the Serializable interface directly or indirectly, must declare a private static final field named serialVersionUID to guarantee serialization compatibility between versions. If no previous version of the class has been released, then the value of this field can be any long value, similar to the 227L used by Pi, as long as the value is used consistently in future versions. If a previous version of the class has been released without an explicit serialVersionUID declaration, but serialization compatibility with that version is important, then the default implicitly computed value for the previous version must be used for the value of the new version's explicit declaration. The serialver tool can be run against the previous version to determine the default computed value for it. The most interesting feature of this example is that the Compute implementation object never needs the Pi class's definition until a Pi object is passed in as an argument to the executeTask method. At that point, the code for the class is loaded by RMI into the Compute object's Java virtual machine, the execute method is invoked, and the task's code is executed. The result, which in the case of the Pi task is a BigDecimal object, is handed back to the calling client, where it is used to print the result of the computation. The fact that the supplied Task object computes the value of Pi is irrelevant to the ComputeEngine object. You could also implement a task that, for example, generates a random prime number by using a probabilistic algorithm. That task would also be computationally intensive and therefore a good candidate for passing to the ComputeEngine, but it would require very different code. This code could also be downloaded when the Task object is passed to a Compute object. In just the way that the algorithm for computing is brought in when needed, the code that generates the random prime number would be brought in when needed. The Compute object knows only that each object it receives implements the execute method. The Compute object does not know, and does not need to know, what the implementation does.
+</p>
+
+            </div><!--/span-->
+          </div><!--/row-->
+          <div class="row-fluid">
+            <div class="span4">
+              <h2>Recommendation 4</h2>
+              <p>At the core of the compute engine is a protocol that enables tasks to be submitted to the compute engine, the compute engine to run those tasks, and the results of those tasks to be returned to the client. This protocol is expressed in the interfaces that are supported by the compute engine. The remote communication for this protocol is illustrated in the following figure. Each interface contains a single method. The compute engine's remote interface, Compute, enables tasks to be submitted to the engine. The client interface, Task, defines how the compute engine executes a submitted task. The compute.Compute interface defines the remotely accessible part, the compute engine itself. Here is the source code for the Compute interface:
+package compute;
+<br>
+<br>import java.rmi.Remote;
+<br>import java.rmi.RemoteException;
+<br>
+<br>public interface Compute extends Remote {
+<br>    <T> T executeTask(Task<T> t) throws RemoteException;
+<br>}
+<br> By extending the interface java.rmi.Remote, the Compute interface identifies itself as an interface whose methods can be invoked from another Java virtual machine. Any object that implements this interface can be a remote object. As a member of a remote interface, the executeTask method is a remote method. Therefore, this method must be defined as being capable of throwing a java.rmi.RemoteException. This exception is thrown by the RMI system from a remote method invocation to indicate that either a communication failure or a protocol error has occurred. A RemoteException is a checked exception, so any code invoking a remote method needs to handle this exception by either catching it or declaring it in its throws clause. The second interface needed for the compute engine is the Task interface, which is the type of the parameter to the executeTask method in the Compute interface. The compute.Task interface defines the interface between the compute engine and the work that it needs to do, providing the way to start the work. Here is the source code for the Task interface:
+<br>package compute;
+<br>
+<br>public interface Task<T> {
+<br>    T execute();
+<br>}
+<br> The Task interface defines a single method, execute, which has no parameters and throws no exceptions. Because the interface does not extend Remote, the method in this interface doesn't need to list java.rmi.RemoteException in its throws clause. The Task interface has a type parameter, T, which represents the result type of the task's computation. This interface's execute method returns the result of the computation and thus its return type is T. The Compute interface's executeTask method, in turn, returns the result of the execution of the Task instance passed to it. Thus, the executeTask method has its own type parameter, T, that associates its own return type with the result type of the passed Task instance. RMI uses the Java object serialization mechanism to transport objects by value between Java virtual machines. For an object to be considered serializable, its class must implement the java.io.Serializable marker interface. Therefore, classes that implement the Task interface must also implement Serializable, as must the classes of objects used for task results. Different kinds of tasks can be run by a Compute object as long as they are implementations of the Task type. The classes that implement this interface can contain any data needed for the computation of the task and any other methods needed for the computation. Here is how RMI makes this simple compute engine possible. Because RMI can assume that the Task objects are written in the Java programming language, implementations of the Task object that were previously unknown to the compute engine are downloaded by RMI into the compute engine's Java virtual machine as needed. This capability enables clients of the compute engine to define new kinds of tasks to be run on the server machine without needing the code to be explicitly installed on that machine. The compute engine, implemented by the ComputeEngine class, implements the Compute interface, enabling different tasks to be submitted to it by calls to its executeTask method. These tasks are run using the task's implementation of the execute method and the results, are returned to the remote client.
+
+</p>
+
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Recommendation 5</h2>
+              <p>As an example, we can show a thread-safe version of a singleton:
+<br>Code listing 1: Singleton.java
+<br> 1 /**
+<br> 2  * The singleton class that can be instantiated only once with lazy <br>instantiation
+<br> 3  */
+<br> 4 public class Singleton {
+<br> 5     /** Static class instance */
+<br> 6     private volatile static Singleton instance = null;
+<br> 7
+<br> 8     /**
+<br> 9      * Standard private constructor
+<br>10      */
+<br>11     private Singleton() {
+<br>12         // Some initialisation
+<br>13     }
+<br>14
+<br>15     /**
+<br>16      * Getter of the singleton instance
+<br>17      * @return The only instance
+<br>18      */
+<br>19     public static Singleton getInstance() {
+<br>20         if (instance == null) {
+<br>21             // If the instance does not exist, go in time-consuming
+<br>22             // section:
+<br>23             synchronized (Singleton.class) {
+<br>24                 if (instance == null) {
+<br>25                     instance = new Singleton();
+<br>26                 }
+<br>27             }
+<br>28         }
+<br>29
+<br>30         return instance;
+<br>31     }
+<br>32  }
+
+
+
+</p>
+
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Recommendation 6</h2>
+              <p>Implementations are the data objects used to store collections, which implement the interfaces described in the Interfaces section. This lesson describes the following kinds of implementations: General-purpose implementations are the most commonly used implementations, designed for everyday use. They are summarized in the table titled General-purpose-implementations. Special-purpose implementations are designed for use in special situations and display nonstandard performance characteristics, usage restrictions, or behavior. Concurrent implementations are designed to support high concurrency, typically at the expense of single-threaded performance. These implementations are part of the java.util.concurrent package. Wrapper implementations are used in combination with other types of implementations, often the general-purpose ones, to provide added or restricted functionality. Convenience implementations are mini-implementations, typically made available via static factory methods, that provide convenient, efficient alternatives to general-purpose implementations for special collections (for example, singleton sets). Abstract implementations are skeletal implementations that facilitate the construction of custom implementations  described later in the Custom Collection Implementations section. An advanced topic, it's not particularly difficult, but relatively few people will need to do it. The general-purpose implementations are summarized in the following table. General-purpose Implementations Interfaces Hash table Implementations Resizable array Implementations Tree Implementations Linked list Implementations Hash table + Linked list Implementations Set HashSet   TreeSet   LinkedHashSet List   ArrayList   LinkedList   Queue           Deque   ArrayDeque   LinkedList   Map HashMap   TreeMap   LinkedHashMap As you can see from the table, the Java Collections Framework provides several general-purpose implementations of the Set, List , and Map interfaces. In each case, one implementation  HashSet, ArrayList, and HashMap  is clearly the one to use for most applications, all other things being equal. Note that the SortedSet and the SortedMap interfaces do not have rows in the table. Each of those interfaces has one implementation (TreeSet and TreeMap) and is listed in the Set and the Map rows. There are two general-purpose Queue implementations  LinkedList, which is also a List implementation, and PriorityQueue, which is omitted from the table. These two implementations provide very different semantics: LinkedList provides FIFO semantics, while PriorityQueue orders its elements according to their values. Each of the general-purpose implementations provides all optional operations contained in its interface. All permit null elements, keys, and values. None are synchronized (thread-safe). All have fail-fast iterators, which detect illegal concurrent modification during iteration and fail quickly and cleanly rather than risking arbitrary, nondeterministic behavior at an undetermined time in the future. All are Serializable and all support a public clone method. The fact that these implementations are unsynchronized represents a break with the past: The legacy collections Vector and Hashtable are synchronized. The present approach was taken because collections are frequently used when the synchronization is of no benefit. Such uses include single-threaded use, read-only use, and use as part of a larger data object that does its own synchronization. In general, it is good API design practice not to make users pay for a feature they don't use. Furthermore, unnecessary synchronization can result in deadlock under certain circumstances. If you need thread-safe collections, the synchronization wrappers, described in the Wrapper Implementations section, allow any collection to be transformed into a synchronized collection. Thus, synchronization is optional for general-purpose implementations, whereas it is mandatory for legacy implementations. Moreover, the java.util.concurrent package provides concurrent implementations of the BlockingQueue interface, which extends Queue, and of the ConcurrentMap interface, which extends Map. These implementations offer much higher concurrency than mere synchronized implementations. As a rule, you should be thinking about the interfaces, not the implementations. That is why there are no programming examples in this section. For the most part, the choice of implementation affects only performance. The preferred style, as mentioned in the Interfaces section, is to choose an implementation when a Collection is created and to immediately assign the new collection to a variable of the corresponding interface type (or to pass the collection to a method expecting an argument of the interface type). In this way, the program does not become dependent on any added methods in a given implementation, leaving the programmer free to change implementations anytime that it is warranted by performance concerns or behavioral details. The sections that follow briefly discuss the implementations. The performance of the implementations is described using words such as constant-time, log, linear, n log(n), and quadratic to refer to the asymptotic upper-bound on the time complexity of performing the operation. All this is quite a mouthful, and it doesn't matter much if you don't know what it means. If you're interested in knowing more, refer to any good algorithms textbook. One thing to keep in mind is that this sort of performance metric has its limitations. Sometimes, the nominally slower implementation may be faster. When in doubt, measure the performance!
+
+</p>
+
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Recommendation 7</h2>
+              <p>As we have seen above, generics give the impression that a new container type is created with each different type parameter. We have also seen that in addition to the normal type checking, the type parameter has to match as well when we assign generics variables. In some cases this is too restrictive. What if we would like to relax this additional checking? What if we would like to define a collection variable that can hold any generic collection, regardless of the parameter type it holds? The wildcard type is represented by the character <?>, and pronounced Unknown, or Any-Type. Any-Type can be expressed also by <? extends Object>. Any-Type includes Interfaces, not only Classes. So now we can define a collection whose element type matches anything. See below:
+<br>Code section 4.39: Wildcard type.
+<br>1 Collection<?> collUnknown;
+<br>Upper bounded wildcards[edit]
+<br>You can specify a restriction on the types of classes that may be used. For example, <? extends ClassName> only allows objects of class ClassName or a subclass. For example, to create a collection that may only contain "Serializable" objects, specify:
+<br>Code section 4.40: Collection of serializable subobjects.
+<br>1 Collection<String> textColl = new ArrayList<String>();
+<br>2
+<br>3 Collection<? extends Serializable> serColl = textColl;
+<br>The above code is valid because the String class is serializable. Use of a class that is not serializable would cause a compilation error. The added items can be retrieved as Serializable object. You can call methods of the Serializable interface or cast it to String. The following collection can only contain objects that extend the class Animal.
+<br>Code listing 4.38: Dog.java
+<br>1 class Dog extends Animal {
+<br>2 }
+<br>Code section 4.41: Example of subclass.
+<br>1 // Create "Animal Collection" variable
+<br>2 Collection<? extends Animal> animalColl = new ArrayList<Dog>();
+<br>Lower bounded wildcards[edit]
+<br><? super ClassName> specifies a restriction on the types of classes that may be used. For example, to declare a Comparator that can compare Dogs, you use:
+<br>Code section 4.42: Superclass.
+<br>1 Comparator<? super Dog> myComparator;
+<br>Now suppose you define a comparator that can compare Animals:
+<br>Code section 4.43: Comparator.
+<br>1 class AnimalComparator implements Comparator<Animal> {
+<br>2   int compare(Animal a, Animal b) {
+<br>3    //...
+<br>4   }
+<br>5 }
+<br>Since Dogs are Animals, you can use this comparator to compare Dogs also. Comparators for any superclass of Dog can also compare Dog; but comparators for any strict subclass cannot.
+<br>Code section 4.44: Generic comparator.
+<br>1 Comparator<Animal> myAnimalComparator = new AnimalComparator();
+<br>2
+<br>3 static int compareTwoDogs(Comparator<? super Dog> comp, Dog dog1, Dog dog2) {
+<br>4   return comp.compare(dog1, dog2);
+<br>5 }
+<br>The above code is valid because the Animal class is a supertype of the Dog class. Use of a class that is not a supertype would cause a compilation error.
+Unbounded wildcard[edit]
+The advantage of the unbounded wildcard (i.e. <?>) compared to a raw type (i.e. without generic) is to explicitly say that the parameterized type is unknown, not any type. That way, all the operations that implies to know the type are forbidden to avoid unsafe operation. Consider the following code:
+<br>Code section 4.45: Unsafe operation.
+<br>1 public void addAtBottom(Collection anyCollection) {
+<br>2   anyCollection.add(new Integer(1));
+<br>3 }
+<br>This code will compile but this code may corrupt the collection if the <br>collection only contains strings:
+<br>Code section 4.46: Corruption of list.
+<br>1 List<String> col = new ArrayList<String>();
+<br>2 addAtBottom(col);
+<br>3 col.get(0).endsWith(".");
+<br>
+<br> Console for Code section 4.46
+<br>Exception in thread "main" java.lang.ClassCastException: java.lang.Integer <br>incompatible with java.lang.String
+<br>at Example.main(Example.java:17)
+<br>This situation could have been avoided if the addAtBottom(Collection) method was defined with an unbounded wildcard: addAtBottom(Collection<?>). With this signature, it is impossible to compile a code that is dependent of the parameterized type. Only independent methods of a collection (clear(), isEmpty(), iterator(), remove(Object o), size(), ...) can be called. For instance, addAtBottom(Collection<?>) could contain the following code:
+<br>Code section 4.47: Safe operation.
+<br>1 public void addAtBottom(Collection<?> anyCollection) {
+<br>2    Iterator<?> iterator = anyCollection.iterator();
+<br>3    while (iterator.hasNext()) {
+<br>4       System.out.print(iterator.next());
+<br>5    }
+<br>6 }
+<br>
+
+</p>
+
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Recommendation 8</h2>
+              <p>Since Java 1.5, the class java.lang.Class is generic. It is an interesting example of using generics for something other than a container class. For example, the type of String.class is Class<String>, and the type of Serializable.class is Class<Serializable>. This can be used to improve the type safety of your reflection code. In particular, since the newInstance() method in Class now returns T, you can get more precise types when creating objects reflectively. Now we can use the newInstance() method to return a new object with exact type, without casting. An example with generics:
+<br>Code section 4.48: Automatic cast.
+<br> 1 Customer cust = Utility.createAnyObject(Customer.class);  // No casting
+<br> 2 ...
+<br> 3 public static <T> T createAnyObject(Class<T> cls) {
+<br> 4     T ret = null;
+<br> 5     try {
+<br> 6         ret = cls.newInstance();
+<br> 7     } catch (Exception e) {
+<br> 8         // Exception Handling
+<br> 9     }
+<br>10     return ret;
+<br>11 }
+<br>The same code without generics:
+<br>Code section 4.49: Former version.
+<br> 1 Customer cust = (Customer) Utility.createAnyObject(Customer.class);  // <br>Casting is needed
+<br> 2 ...
+<br> 3 public static Object createAnyObject(Class cls) {
+<br> 4     Object ret = null;
+<br> 5     try {
+<br> 6         ret = cls.newInstance();
+<br> 7     } catch (Exception e) {
+<br> 8         // Exception Handling
+<br> 9     }
+<br>10     return ret;
+<br>11 }
+<br>
+</p>
+
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Recommendation 9</h2>
+              <p>Naming and Directory Concepts Directory Concepts Overview of JNDI Naming Package Directory and LDAP Packages Event and Service Provider Packages Software Setup LDAP Setup Java Application Setup Naming and Directory Operations Naming Exceptions Lookup an Object List the Context Add, Replace or Remove a Binding Rename Create and Destroy Subcontexts Attribute Names Read Attributes Modify Attributes Add, Replace Bindings with Attributes Search Basic Search Filters Scope Result Count Time Limit Trouble Shooting Tips Advanced Topics for LDAP Users LDAP v3 JNDI as an LDAP API How LDAP Operations Map to JNDI APIs How LDAP Error Codes Map to JNDI Exceptions Security Modes of Authenticating to LDAP Authentication Mechanisms Anonymous Simple SASL Digest-MD5 SSL and Custom Sockets More LDAP Operations LDAP Compare Search Results LDAP Unsolicited Notifications Connection Management Creation Closing Pooling Configuration Frequently Asked Questions Java Objects in the Directory Storing and Reading Objects Serializable Objects New features in JDK 5.0 and JDK 6 Retrieving Distinguished Name Standard LDAP Controls Paged Results Control Sort Control Manage Referral Control Manipulating LdapName (Distinguished Name) Manipulating Relative Distringuished Name (RDN) Setting Timeout for Ldap Operations
+
+</p>
+
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Recommendation 10</h2>
+              <p>Event Handling Java Programming JavaBeans Canvas
+Navigate User Interface topic:( v • d • e ) Basic I/O Streams Event handling JavaBeans Canvas Graphics Drawing basic shapes Drawing complex shapes Drawing text Understanding gradients Applets Overview User Interface Event Listeners Graphics and Media
+Reusability comes at the core of any modern computer language's framework. It is often desirable to use components you previously built in recurring environments. In Rapid Application Development, these prove more helpful as you can drag them off a list of components and use it elsewhere in your project. Such level of reusability is added into the Java Programming language with the help of the JavaBeans architecture.
+JavaBeans are the mainstream Java component model, introduced in 1996 by Sun Microsystems. JavaBeans are defined as follows:
+"A JavaBean is a reusable software component that can be manipulated visually in a builder tool."
+Together with the component model, Sun released a simple visual composition tool, the BeanBox. It is mostly intended for experimenting with Beans rather than offering a professional IDE. For real world applications, one should better deploy on one of the Java IDEs like Visual Age or JBuilder that support the visual composition of JavaBeans.
+As we will see, JavaBeans do not essentially differ from standard Java classes, which makes the component model quite easy to use. What sets a JavaBean apart from normal Java classes is that a JavaBean follows the Oracle JavaBeans Standard (the term JavaBean or simply bean also refers to the instances of a JavaBean class). There is a set of features and conventions adopted for facilitating reuse:
+Presence of a no argument constructor; Support for persistence; Properties manipulated by getter and setter methods; Support for introspection; Events as the mechanism of communication between beans; Support for customization via property editors.
+The JavaBeans standard provides a framework for creating objects to be used by GUI tools, including Java development environments. But in more common usage, a bean is a serializable class that follows the JavaBeans naming conventions for its properties. These naming standards make it easy to use Java introspection.
+
+</p>
+
+            </div><!--/span-->
+          </div><!--/row-->
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; Company 2013</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+
+  </body>
+</html>

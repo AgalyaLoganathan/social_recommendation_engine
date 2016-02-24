@@ -1,0 +1,44 @@
+Programming is essentially thinking of solutions to problems in real life as a system. With any programming language, you need to know how to address real-life problems into something that could be accurately represented within a computer system. In order to begin programming with the Java programming language (or in fact, with any programming language), a programmer must first understand the basics of abstraction.
+Abstraction is the process of representing real-life problems and object into your programs.
+Suppose a novelist, a painter and a programmer were asked to abstract (i.e., represent) a real-life object in their work. Suppose, the real-life object that needs to be abstracted is an animal. Abstraction for a novelist would include writing the description of the animal whilst the painter would draw a picture of the animal – but what about a computer programmer?
+The Java programming language uses a programming paradigm called object-oriented programming (OOP), which shows you exactly what a programmer needs to be doing. According to OOP, every object or problem in real-life can be translated into a virtual object within your computer system.
+Thinking in objects[edit]
+In OOP, every abstraction of a real-life object is simply called an object within your code. An object is essentially the most basic representation of a real-life object as part of a computer system. With Java being an object-oriented language, everything within Java is represented as an object. To demonstrate this effect, if you were to define an abstraction of an animal in your code, you would write the following lines of code (as you would for any other abstraction):
+
+class Animal { }
+The code above creates a space within your code where you can start defining an object; this space is called a class (or type) definition. All objects need to be defined using a class definition in order for them to be used in your program. Notice the curly brackets – anything you write within these brackets would serve as a definition or specification for your object. In the case of the example above, we created a class definition called Animal for objects that could serve as an abstract representation of any animal in real-life. The way that a Java environment evaluates this code to be a class definition is by looking at the prefix word we used to begin our class definition (i.e., class). Such predefined words in the Java language are known as keywords and make up the grammar for the language (known as programming syntax).
+Note: Class definitions have different names in different languages. They are sometimes called type definitions, object specifications or templates as well
+Understanding class definitions and types[edit]
+Aristotle was perhaps the first person to think of abstract types or typologies of objects. He started calling them classes – e.g., classes of birds, classes of mammals. Class definitions therefore serve the purpose well in defining the common characteristics or types of objects you would be creating. Upon declaring a class definition, you can create objects based on that definition. In order to do so however, you need to write a special syntax that goes like this:
+Animal dog = new Animal();
+The code above effectively creates an object called dog based on the class definition for Animal. In non-programmer parlance, the code above would translate into something akin to saying, "Create a new object dog of type Animal." A single class definition enables you to create multiple objects as <br>the code below indicates:
+<br>Animal dog = new Animal();
+<br>Animal cat = new Animal();
+<br>Animal camel = new Animal();
+<br>Basically, you just have to write the code for your class or type definition once, and then use it to create countless numbers of objects based on that specification. Although you might not grasp the importance of doing so, this little exercise saves you a lot of time (a luxury that was not readily available to programmers in the pre-Java days).
+Expanding your class definitions[edit]
+Although each object you create from a class definition is essentially the same, there has to be a way of differentiating those objects in your code. Object fields (or simply fields) are what makes your objects unique from other objects. Let's take our present abstraction for instance. An animal could be a dog, cat, camel or a duck but since this abstraction is of a very generic kind, you need to define fields that are common to all of these animals and yet makes the animals stand apart. For instance, you can have two fields: name (a common name given to any one of these animals) and legs (the number of limbs any one of these animals would require to walk). As you start defining your objects, they start to look like this:
+
+<br>class Animal {
+<br>
+<br>  String name;
+<br>  int legs;
+<br>}
+<br>In the code above you defined two object fields:
+a field called name of type String; and, a field called legs of type int.
+These special pre-defined types are called data types. The String data type is used for fields that can hold textual values like names, while the int (integer) data type is used for fields that can hold numeric values
+Note: Fields are called different things in different languages. They may be called state identifiers, properties or member variables in other programming language syntax. Java uses the words fields and properties in different contexts, as would be understood from upcoming sections.
+Figure 3: In order to denote the Animal object as a system within the Java Environment, you present it as such. Note how fields are presented.
+In order to demonstrate how fields work, we will go ahead and create objects from this amended version of our class definition as such:
+<br>Animal animal1 = new Animal();
+<br>Animal animal2 = new Animal();
+<br>
+<br>animal1.name = "dog";
+<br>animal1.legs = 4;
+<br>
+<br>animal2.name = "duck";
+<br>animal2.legs = 2;
+You can access the fields of your created objects by using the . (dot) or membership operator. In the example above, we created two objects: animal1 and animal2 of type Animal. And since, we had established that each Animal has two fields namely name and legs, we accessed and modified these fields for each of our objects using the membership operator to set the two apart. By declaring different values for different objects, we can manipulate their current state. So, for instance:
+the animal1 object is a "dog" with 4 legs to walk with; while, the animal2 object is a "duck" with 2 legs to walk with.
+What sets the two objects apart is their current state. Both the objects have different states and thus stand out as two different objects even though they were created from the same template or class definition.
+

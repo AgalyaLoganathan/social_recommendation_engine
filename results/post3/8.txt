@@ -1,0 +1,7 @@
+As described in Generics, Inheritance, and Subtypes, generic classes or interfaces are not related merely because there is a relationship between their types. However, you can use wildcards to create a relationship between generic classes or interfaces. <br>Given the following two regular (non-generic) classes:
+<br>class A { /* ... */ }
+<br>class B extends A { /* ... */ }
+<br> It would be reasonable to write the following code:
+<br>B b = new B();
+<br>A a = b;
+ <br>This example shows that inheritance of regular classes follows this rule of subtyping: class B is a subtype of class A if B extends A.

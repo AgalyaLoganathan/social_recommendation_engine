@@ -1,0 +1,87 @@
+The dictionary definition of polymorphism refers to a principle in biology in which an organism or species can have many different forms or stages. This principle can also be applied to object-oriented programming and languages like the Java language. Subclasses of a class can define their own unique behaviors and yet share some of the same functionality of the parent class. Polymorphism can be demonstrated with a minor modification to the Bicycle class. For example, a printDescription method could be added to the class that displays all the data currently stored in an instance.
+<br>public void printDescription(){
+<br>    System.out.println("\nBike is " + "in gear " + this.gear
+<br>        + " with a cadence of " + this.cadence +
+<br>        " and travelling at a speed of " + this.speed + ". ");
+<br>}
+ To demonstrate polymorphic features in the Java language, extend the Bicycle class with a MountainBike and a RoadBike class. For MountainBike, add a field for suspension, which is a String value that indicates if the bike has a front shock absorber, Front. Or, the bike has a front and back shock absorber, Dual. Here is the updated class:
+<br>public class MountainBike extends Bicycle {
+<br>    private String suspension;
+<br>
+<br>    public MountainBike(
+<br>               int startCadence,
+<br>               int startSpeed,
+<br>               int startGear,
+<br>               String suspensionType){
+<br>        super(startCadence,
+<br>              startSpeed,
+<br>              startGear);
+<br>        this.setSuspension(suspensionType);
+<br>    }
+<br>
+<br>    public String getSuspension(){
+<br>      return this.suspension;
+<br>    }
+<br>
+<br>    public void setSuspension(String suspensionType) {
+<br>        this.suspension = suspensionType;
+<br>    }
+<br>
+<br>    public void printDescription() {
+<br>        super.printDescription();
+<br>        System.out.println("The " + "MountainBike has a" +
+<br>            getSuspension() + " suspension.");
+<br>    }
+<br>}
+ Note the overridden printDescription method. In addition to the information provided before, additional data about the suspension is included to the output. Next, create the RoadBike class. Because road or racing bikes have skinny tires, add an attribute to track the tire width. Here is the RoadBike <br>class:
+<br>public class RoadBike extends Bicycle{
+<br>    // In millimeters (mm)
+<br>    private int tireWidth;
+<br>
+<br>    public RoadBike(int startCadence,
+<br>                    int startSpeed,
+<br>                    int startGear,
+<br>                    int newTireWidth){
+<br>        super(startCadence,
+<br>              startSpeed,
+<br>              startGear);
+<br>        this.setTireWidth(newTireWidth);
+<br>    }
+<br>
+<br>    public int getTireWidth(){
+<br>      return this.tireWidth;
+<br>    }
+<br>
+<br>    public void setTireWidth(int newTireWidth){
+<br>        this.tireWidth = newTireWidth;
+<br>    }
+<br>
+<br>    public void printDescription(){
+<br>        super.printDescription();
+<br>        System.out.println("The RoadBike" + " has " + getTireWidth() +
+<br>            " MM tires.");
+<br>    }
+<br>}
+<br> Note that once again, the printDescription method has been overridden. This time, information about the tire width is displayed. To summarize, there are three classes: Bicycle, MountainBike, and RoadBike. The two subclasses override the printDescription method and print unique information. Here is a test program that creates three Bicycle variables. Each variable is assigned to one of the three bicycle classes. Each variable is then printed.
+<br>public class TestBikes {
+<br>  public static void main(String[] args){
+<br>    Bicycle bike01, bike02, bike03;
+<br>
+<br>    bike01 = new Bicycle(20, 10, 1);
+<br>    bike02 = new MountainBike(20, 10, 5, "Dual");
+<br>    bike03 = new RoadBike(40, 20, 8, 23);
+<br>
+<br>    bike01.printDescription();
+<br>    bike02.printDescription();
+<br>    bike03.printDescription();
+<br>  }
+<br>}
+<br> The following is the output from the test program:
+<br>Bike is in gear 1 with a cadence of 20 and travelling at a speed of 10.
+<br>
+<br>Bike is in gear 5 with a cadence of 20 and travelling at a speed of 10.
+<br>The MountainBike has a Dual suspension.
+<br>
+<br>Bike is in gear 8 with a cadence of 40 and travelling at a speed of 20.
+<br>The RoadBike has 23 MM tires.
+<br> The Java virtual machine (JVM) calls the appropriate method for the object that is referred to in each variable. It does not call the method that is defined by the variable's type. This behavior is referred to as virtual method invocation and demonstrates an aspect of the important polymorphism features in the Java language.

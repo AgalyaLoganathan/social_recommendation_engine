@@ -1,0 +1,22 @@
+Program flow can be affected using function/method calls, loops and iterations. Of various types of branching constructs, we can easily pick out two generic branching methods.
+Unconditional Branching Conditional Branching
+Unconditional Branching Statements[edit]
+If you look closely at a method, you'll see that a method is a named statement block that is executed by calling that particular name. An unconditional branch is created either by invoking the method or by calling break, continue, return or throw, all of which are described below.
+When a name of a method is encountered in a flow, it stops execution in the current method and branches to the newly called method. After returning a value from the called method, execution picks up at the original method on the line below the method call.
+<br>Code listing 3.8: UnconditionalBranching.java
+<br> 1 public class UnconditionalBranching {
+<br> 2     public static void main(String[] args) {
+<br> 3         System.out.println("Inside main method! Invoking aMethod!");
+<br> 4         aMethod();
+<br> 5         System.out.println("Back in main method!");
+<br> 6     }
+<br> 7
+<br> 8     public static void aMethod() {
+<br> 9         System.out.println("Inside aMethod!");
+<br>10     }
+<br>11 }
+<br> Output provided with the screen of information running the above code.
+Inside main method! Invoking aMethod!
+Inside aMethod!
+Back in main method!
+The program flow begins in the main method. Just as aMethod is invoked, the flow travels to the called method. At this very point, the flow branches to the other method. Once the method is completed, the flow is returned to the point it left off and resumes at the next statement after the call to the method.

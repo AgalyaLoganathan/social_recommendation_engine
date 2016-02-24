@@ -1,0 +1,29 @@
+The syntax of a Java class is the characters, symbols and their structure used to code the class. Java programs consist of a sequence of tokens. There are different kinds of tokens. For example, there are word tokens such as class and public which represent keywords (in purple above) — special words with reserved meaning in Java. Other words such as Distance, point0, x1, and printDistance are not keywords but identifiers (in grey). Identifiers have many different uses in Java but primarily they are used as names. Java also has tokens to represent numbers, such as 1 and 3; these are known as literals (in orange). String literals (in blue), such as "Distance between ", consist of zero or more characters embedded in double quotes, and operators (in red) such as + and = are used to express basic computation such as addition or String concatenation or assignment. There are also left and right braces ({ and }) which enclose blocks. The body of a class is one such block. Some tokens are punctuation, such as periods . and commas , and semicolons ;. You use whitespace such as spaces, tabs, and newlines, to separate tokens. For example, whitespace is required between keywords and identifiers: publicstatic is a single identifier with twelve characters, not two Java keywords.
+The main() method[edit]
+The main() method is the main entry point which Java invokes when you start a Java program from the command line. The command
+Output
+java Distance 0 3 4 0
+instructs Java to locate the Distance class, put the four command line arguments into an array of String values, then pass those arguments to the public static main(String[]) method of the class. We will introduce arrays shortly. Any Java class that you want to invoke from the command line or desktop shortcut must have a main method with this signature or the following signature:
+<br>public static main(String...).
+<br>Code section 2.9: main() method.
+<br>1 public static void main(String[] args) {
+<br>2    Distance dist = new Distance(
+<br>3          intValue(args[0]), intValue(args[1]),
+<br>4          intValue(args[2]), intValue(args[3]));
+<br>5    dist.printDistance();
+<br>6 }
+<br>The main() method invokes the final method, intValue(), four times. The intValue() takes a single string parameter and returns the integer value represented in the string. For example, intValue("3") will return the integer 3.
+People who do test-first programming or perform regression testing write a main() method in every Java class, and a main() function in every Python module, to run automated tests. When a person executes the file directly, the main() method executes and runs the automated tests for that file. When a person executes some other Java file that in turn imports many other Java classes, only one main() method is executed -- the main() method of the directly-executed file.
+<br>The intValue() method[edit]
+<br>The intValue() method delegates its job to the Integer.parseInt() method. The main method could have called Integer.parseInt() directly; the intValue()method simply makes the main() method slightly more readable.
+<br>Code section 2.10: intValue() method.
+<br>1 private static int intValue(String data) {
+<br>2    return Integer.parseInt(data);
+<br>3 }
+<br>This method is private since, like the fields point0 and point1, it is part of the internal implementation of the class and is not part of the external programming interface of the Distance class.
+Static vs. Instance Methods[edit]
+Both the main() and intValue() methods are static methods. The static keyword tells the compiler to create a single memory space associated with the class. Each individual object instantiated has its own private state variables and methods but use the same static methods and members common to the single class object created by the compiler when the first class object is instantiated or created. This means that the method executes in a static or non-object context — there is no implicit separate instance available when the static methods run from various objects, and the special variable this is not available. As such, static methods cannot access instance methods or instance fields (such as printDistance()) or point0) directly. The main() method can only invoke the instance method printDistance() method via an instance reference such as dist.
+Data Types[edit]
+Most declarations have a data type. Java has several categories of data types: reference types, primitive types, array types, and a special type, void.
+Primitive Types[edit]
+The primitive types are used to represent boolean, character, and numeric values. This program uses only one primitive type explicitly, int, which represents 32 bit signed integer values. The program also implicitly uses double, which is the return type of the distance() method of java.awt.Point. double values are 64 bit IEEE floating point values. The main() method uses integer values 0, 1, 2, and 3 to access elements of the command line arguments. The Distance() constructor's four parameters also have the type int. Also, the intValue() method has a return type of int. This means a call to that method, such as intValue(args[0]), is an expression of type int. This helps explain why the main method cannot call:

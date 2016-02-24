@@ -1,0 +1,15 @@
+An easy way to dynamically load a Class is via the java.net.URLClassLoader class. This class can be used to load a Class or a collection of classes that are accessible via a URL. This is very similar to the -classpath parameter in the java executable. To create a URLClassLoader, use the factory method (as using the constructor requires a security privilege):
+<br>Code section 10.4: Class loader.
+<br>1 URLClassLoader classLoader = URLClassLoader.newInstance(
+<br>2    new URL[]{"http://example.com/javaClasses.jar"});
+<br>Unlike other dynamic class loading techniques, this can be used even without security permission provided the classes come from the same Web domain as the caller. Once a ClassLoader instance is obtained, a class can be loaded via the loadClass method. For example, to load the class com.example.MyClass, one would:
+<br>Code section 10.5: Class loading.
+<br>1 Class<?> clazz = classLoader.load("com.example.MyClass");
+<br>Executing code from a Class instance is explained in the Dynamic Invocation chapter.
+<br>
+<br>To do: Add some exercises like the ones in Variables</p>
+
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Recommendation 3</h2>
+              <p>Reflection provides three enum-specific APIs: Class.isEnum() Indicates whether this class represents an enum type Class.getEnumConstants() Retrieves the list of enum constants defined by the enum in the order they're declared java.lang.reflect.Field.isEnumConstant() Indicates whether this field represents an element of an enumerated type Sometimes it is necessary to dynamically retrieve the list of enum constants; in non-reflective code this is accomplished by invoking the implicitly declared static method values() on the enum. If an instance of an enum type is not available the only way to get a list of the possible values is to invoke Class.getEnumConstants() since it is impossible to instantiate an enum type.

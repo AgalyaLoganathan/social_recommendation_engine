@@ -1,0 +1,57 @@
+Just as in non-reflective code, reflection supports the ability to dynamically create arrays of arbitrary type and dimensions via java.lang.reflect.Array.newInstance(). Consider ArrayCreator, a basic interpreter capable of dynamically creating arrays. The syntax that will be parsed is as follows: 
+fully_qualified_class_name variable_name[] = 
+     { val1, val2, val3, ... }
+ Assume that the fully_qualified_class_name represents a class that has a constructor with a single String argument. The dimensions of the array are determined by the number of values provided. The following example will construct an instance of an array of fully_qualified_class_name and populate its values with instances given by val1, val2, etc. (This example assumes familiarity with Class.getConstructor() and java.lang.reflect.Constructor.newInstance(). For a discussion of the reflection APIs for Constructor see the Creating New Class Instances section of this trail.) 
+
+<br>import java.lang.reflect.Array;
+<br>import java.lang.reflect.Constructor;
+<br>import java.lang.reflect.InvocationTargetException;
+<br>import java.util.regex.Pattern;
+<br>import java.util.regex.Matcher;
+<br>import java.util.Arrays;
+<br>import static java.lang.System.out;
+<br>
+<br>public class ArrayCreator {
+<br>    private static String s = "java.math.BigInteger bi[] = { 123, 234, 345 }";
+<br>    private static Pattern p = Pattern.<br>compile("^\\s*(\\S+)\\s*\\w+\\[\\].*\\{\\s*([^}]+)\\s*\\}");
+<br>
+<br>    public static void main(String... args) {
+<br>        Matcher m = p.matcher(s);
+<br>
+<br>        if (m.find()) {
+<br>            String cName = m.group(1);
+<br>            String[] cVals = m.group(2).split("[\\s,]+");
+<br>            int n = cVals.length;
+<br>
+<br>            try {
+<br>                Class<?> c = Class.forName(cName);
+<br>                Object o = Array.newInstance(c, n);
+<br>                for (int i = 0; i < n; i++) {
+<br>                    String v = cVals[i];
+<br>                    Constructor ctor = c.getConstructor(String.class);
+<br>                    Object val = ctor.newInstance(v);
+<br>                    Array.set(o, i, val);
+<br>                }
+<br>
+<br>                Object[] oo = (Object[])o;
+<br>                out.format("%s[] = %s%n", cName, Arrays.toString(oo));
+<br>
+<br>            // production code should handle these exceptions more gracefully
+<br>            } catch (ClassNotFoundException x) {
+<br>                x.printStackTrace();
+<br>            } catch (NoSuchMethodException x) {
+<br>                x.printStackTrace();
+<br>            } catch (IllegalAccessException x) {
+<br>                x.printStackTrace();
+<br>            } catch (InstantiationException x) {
+<br>                x.printStackTrace();
+<br>            } catch (InvocationTargetException x) {
+<br>                x.printStackTrace();
+<br>            }
+<br>        }
+<br>    }
+<br>}
+<br> 
+<br>$ java ArrayCreator
+<br>java.math.BigInteger [] = [123, 234, 345]
+ The above example shows one case where it may be desirable to create an array via reflection; namely if the component type is not known until runtime. In this case, the code uses Class.forName() to get a class for the desired component type and then calls a specific constructor to initialize each component of the array before setting the corresponding array value.

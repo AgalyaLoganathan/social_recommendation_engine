@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="justified-nav.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+      <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="/"><h3>HOME</h3> </a>
+          <div class="nav-collapse collapse">
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+<div>
+        <h2>WORKFLOW OF THE SOCIAL RECOMMENDATION SYSTEM</h2>
+      </div>
+    <div class="container">
+
+      <!-- The justified navigation menu is meant for single line per list item.
+           Multiple lines will require custom code not provided by Bootstrap. -->
+<!--       <div class="masthead">
+        <h3 class="text-muted">Project name</h3>
+        <nav>
+          <ul class="nav nav-justified">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Downloads</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+      </div> -->
+
+      <!-- Jumbotron -->
+
+
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-lg-4">
+          <h2>Crawling Web Page Contents
+          </h2>
+          <p>
+          <div>
+          <span><b> Wikibooks Website</b></span>
+          <br>I maintained specific crawler to crawl and categorize the contents of the Wikibooks website.
+          <br>In this website, I extracted the code (Java) using specific tags and mapped the urls from which the code is exracted.
+          <br> I extracted table contents seperately which also had code embedded in it.In addition it had tabular data as well.
+          <br> I extracted the remaining text content by using a method where I extract all the text between header - H2 tags. This helped because, it neatly categorized the subdivision topics of each page with suitable examples.
+          </div>
+  <div>
+<span><b> Oracle Java Tutorials </b></span>
+<br>I maintained specific crawler to crawl and categorize the contents of this website as well.
+<br> In this website, I extracted the code (Java) and the tabular data using specific tags and mapped the urls from which the code is exracted. This was similar to wikibooks website crawling
+ <br> However,  I extracted the remaining text content by using specific divs with specific ids. This is because it didn't exhibit sufficient header tags and extracting p tag texts was not much meaningful.
+</div>
+</p>
+        </div>
+        <div class="col-lg-4">
+          <h2>Indexing the crawled Content
+</h2>
+          <p>
+          <div>
+          <span><b>Python module - Keyword Extraction</b></span>
+ <br> I used the TFM (Topic Facet Modelling) basic priciples and came up with a python script which would preprocess(stopword removal) of the input discussions or questions (from stackoverflow) and identify the weightage of the different facets that are under each topic. The topics include Polymorphism, Class Concepts etc. It was done in python due to ease and familiarity.
+ </div>
+  <div>
+<span><b> Java Apache Indexer  </b></span>
+<br> This module was built on top of the code shared by the professor. I use Apache Lucene Standard Analyser but I overcame the problem of individual word split in Standard Analyser by giving the input text in the required format.
+<br> For each post, the identified distribution of keywords (obtained from the python module) is given to the Indexer and it constructs the query string along with the weightage for each facet.
+</div>
+  <div>
+<span><b> Stroing Indexer Results  </b></span>
+<br> The results (top 10 posts) for each post is then stored in a specific result folder so that it could be accessed by the UI application.
+</div>
+</p>
+       </div>
+        <div class="col-lg-4">
+          <h2> Node js Front End
+</h2>
+           <p>
+          <div>
+          <span><b> Website </b></span>
+<br> The front end is built using node js server. This server has different end points exposed for each post which reads data from the appropriate location where the indexed results are stored.
+<br> Each post has a dedicated page where the recommendations are shown
+<br> The explanation page is rendered on click of the View Explanation button in Home page.
+<br> I have used ejs template so that I can pass this data to html for each of the page that corresponds to individual page.
+ </div>
+</p>
+
+        </div>
+      </div>
+
+      <!-- Site footer -->
+      <footer class="footer">
+        <p>Contact: Agalya Loganathan - 1209352296</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
